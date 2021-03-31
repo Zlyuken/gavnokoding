@@ -1,0 +1,54 @@
+<html lang="ru" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  </head>
+  <body>
+<!--Zlyuken: 31.08.2021 //-->
+<pre>
+/* создание таблицы в базе через админку phpmyadmin / php adminer */
+
+/* int(11) - строка */
+/* varchar(255) - текстовое поле */
+/* DROP TABLE `magazin_nalichie_cena`; */
+
+
+CREATE TABLE `magazin_nalichie_cena` (
+`ID` int(11) NOT NULL AUTO_INCREMENT,
+`IBLOCK_ID` int(11) NOT NULL,
+`name`  varchar(255) COLLATE utf8_general_ci DEFAULT NULL,
+`mag_1` varchar(255) COLLATE utf8_general_ci DEFAULT NULL,
+`mag_2` varchar(255) COLLATE utf8_general_ci DEFAULT NULL,
+`mag_3` varchar(255) COLLATE utf8_general_ci DEFAULT NULL,
+`nal_1` varchar(255) COLLATE utf8_general_ci DEFAULT NULL,
+`nal_2` varchar(255) COLLATE utf8_general_ci DEFAULT NULL,
+`nal_3` varchar(255) COLLATE utf8_general_ci DEFAULT NULL,
+`cena_1` int(15) COLLATE utf8_general_ci DEFAULT NULL,
+`cena_2` int(15) COLLATE utf8_general_ci DEFAULT NULL,
+`cena_3` int(15) COLLATE utf8_general_ci DEFAULT NULL,
+`SHORT_NAME` int(30) COLLATE utf8_general_ci DEFAULT NULL,
+PRIMARY KEY (`ID`)
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+
+
+/* внесение данных в выше созданную таблицу в базе */
+INSERT INTO `magazin_nalichie_cena` (`ID`, `IBLOCK_ID`, `name`, `mag_1`, `mag_2`, `mag_3`, `nal_1`, `nal_2`, `nal_3`, `cena_1`, `cena_2`, `cena_3`, `SHORT_NAME`) VALUES
+('1',	'56',	'товар 1',	'regard',	'xcom',	'compmarket',	'в наличие',	'в наличие',	'в наличие',	'555111',	'555111',	'555111',	NULL),
+('2',	'56',	'товар 2',	'regard',	'xcom',	'compmarket',	'нет в наличие',	'в наличие',	'в наличие',	'555121',	'555122',	'555123',	NULL),
+('3',	'56',	'товар 3',	'regard',	'xcom',	'compmarket',	'в наличие',	'нет в наличие',	'в наличие',	'555132',	'555131',	'555133',	NULL),
+('4',	'56',	'товар 4',	'regard',	'xcom',	'compmarket',	'в наличие',	'в наличие',	'нет в наличие',	'555143',	'555142',	'555141',	NULL),
+('5',	'56',	'товар 5',	'regard',	'xcom',	'compmarket',	'нет в наличие',	'нет в наличие',	'в наличие',	'555152',	'555151',	'555153',	NULL),
+('6',	'56',	'товар 6',	'regard',	'xcom',	'compmarket',	'нет в наличие',	'в наличие',	'нет в наличие',	'555161',	'555163',	'555162',	NULL),
+('7',	'56',	'товар 7',	'regard',	'xcom',	'compmarket',	'в наличие',	'нет в наличие',	'нет в наличие',	'555171',	'555173',	'555173',	NULL),
+('8',	'56',	'товар 8',	'regard',	'xcom',	'compmarket',	'нет в наличие',	'нет в наличие',	'нет в наличие',	'555181',	'555182',	'555181',	NULL),
+('9',	'56',	'товар 9',	'regard',	'xcom',	'compmarket',	NULL,	NULL,	'в наличие',	'555152',	NULL,	'555153',	NULL),
+('10',	'56',	'товар 10',	'regard',	'xcom',	'compmarket',	NULL,	'в наличие',	'нет в наличие',	NULL,	'555163',	'555162',	NULL),
+('11',	'56',	'товар 11',	'regard',	'xcom',	'compmarket',	'в наличие',	'нет в наличие',	NULL,	'555171',	'555173',	NULL,	NULL),
+('12',	'56',	'товар 12',	'regard',	'xcom',	'compmarket',	'нет в наличие',	NULL,	NULL,	'555181',	NULL,	NULL,	NULL),
+('13',	'56',	'товар 13',	'regard',	'xcom',	'compmarket',	NULL,	'в наличие',	'нет в наличие',	NULL,	'555163',	'555162',	NULL),
+('14',	'56',	'товар 14',	'regard',	'xcom',	'compmarket',	'в наличие',	'нет в наличие',	'нет в наличие',	'555171',	'555173',	'555173',	NULL),
+('15',	'56',	'товар 15',	'regard',	'xcom',	'compmarket',	NULL,	'нет в наличие',	'нет в наличие',	NULL,	'555182',	'555181',	NULL);
+</pre>
+</body>
+</html>
