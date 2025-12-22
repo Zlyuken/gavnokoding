@@ -1,0 +1,63 @@
+#contact-form .error-name,
+#contact-form .error-message,
+#contact-form .error-phone,
+#contact-form .error-email,
+#contact-form .error-message {
+    color: red;
+    position: absolute;
+    margin-top: -22px;
+
+}
+
+.dec-review-bottom .description-wrap.description-wrap--instruction p {
+    color: #000000;
+}
+.description-wrap.description-wrap--instruction ol{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.description-wrap.description-wrap--instruction ul{
+    margin-left: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.description-wrap.description-wrap--instruction h2 {
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.description-wrap.description-wrap--instruction h3 {
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 25px;
+    text-align: center;
+}
+.description-wrap.description-wrap--instruction h4 {
+    color: #000;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+.description-wrap.description-wrap--instruction ol li{
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.description-wrap.description-wrap--instruction ul li{
+    list-style-type: disc;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* for ya.maps -> start */
+#map{width: 1200px; height: 600px; margin:0px auto;}
+.ymaps-2-1-79-map-copyrights-promo, .ymaps-2-1-79-copyright__content-cell, .ymaps-2-1-79-controls__toolbar{display:none;}
+.ymaps-2-1-79-controls__control{top:10px!important;}
+.ymaps-2-1-79-map ymaps{border-radius:10px;}
+#my-listbox{margin:0px; padding:0px;}
+#my-listbox ymaps, #my-listbox li, #my-listbox a{display:inline-block;}
+#my-listbox a{padding-bottom:5px; color: #a7c753; text-decoration: underline; text-decoration-style: dashed; margin-bottom:5px;}
+#my-listbox ymaps ymaps{margin: 0px 5px; cursor:pointer;}
+#my-listbox .active{color:#ff0000;}
+.d_none{display:none;}
+.d_block{display:block;}
+/* for ya.maps -> end */
