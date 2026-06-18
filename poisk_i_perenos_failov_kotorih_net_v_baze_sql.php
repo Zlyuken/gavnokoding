@@ -1,4 +1,8 @@
 <?php
+/*
+запуск из консоли: php /home/bitrix/www/poisk_i_perenos_failov_kotorih_net_v_baze_sql.php
+*/
+
 define("NO_KEEP_STATISTIC", true);   // Отключает сбор статистики
 define("NOT_CHECK_PERMISSIONS", true); // Отключает проверку прав // чтобы не нужно было авторизовываться
 @set_time_limit(0);                   // Снимает ограничение на время выполнения
