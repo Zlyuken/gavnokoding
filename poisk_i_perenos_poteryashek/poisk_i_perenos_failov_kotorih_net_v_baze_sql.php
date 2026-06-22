@@ -37,7 +37,7 @@ if ($isCLI){
 } else {
     require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
     set_time_limit(0);// Снимает ограничение на время выполнения
-    ini_set('memory_limit', '2048M');
+    // ini_set('memory_limit', '2048M');
     header('Content-Type: text/html; charset=utf-8');
     echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Поиск файлов-потерях</title></head><body><pre>';
 }
@@ -490,7 +490,7 @@ function updateProgress($progressFile, $lastIndex, $checkedCount, $poiskpoteryah
     $progress = [
         'last_index' => $lastIndex,
         'checked_count' => $checkedCount,
-        'poiskpoteryah__count' => $poiskpoteryah_Count,
+        'poiskpoteryah_count' => $poiskpoteryah_Count,
         'updated_at' => date('Y-m-d H:i:s'),
     ];
     file_put_contents($progressFile, json_encode($progress, JSON_UNESCAPED_UNICODE));
@@ -679,13 +679,18 @@ if ($step === '1'){
             exit;
         }
         $startIndex = $progress['last_index'] ?? 0;
-        $poiskpoteryah_Count = $progress['poiskpoteryah__count'] ?? 0;
+        $poiskpoteryah_Count = $progress['poiskpoteryah_count'] ?? 0;
         output("Найден прогресс. Продолжаем с индекса: {$startIndex}");
         output("Уже проверено: {$startIndex}");
         output("Уже найдено потерях: {$poiskpoteryah_Count}");
     } else {
-        file_put_contents($poiskpoteryah_File, '[]');
-        file_put_contents($pathsFile, '');
+        // Создаём файлы, только если их ещё нет
+        if (!file_exists($poiskpoteryah_File)){
+            file_put_contents($poiskpoteryah_File, '[]');
+        }
+        if (!file_exists($pathsFile)){
+            file_put_contents($pathsFile, '');
+        }
     }
     $fileNames = array_keys($files);
     $totalToCheck = count($fileNames);
@@ -696,7 +701,7 @@ if ($step === '1'){
     output("  TXT:  {$pathsFile}");
     output("");
     $startTime = time();
-    $checkedCount = $startIndex;
+    $checkedCount = 0;
     for ($i = $startIndex; $i < $totalToCheck; $i++){
         $fileName = $fileNames[$i];
         $checkedCount++;
@@ -718,25 +723,23 @@ if ($step === '1'){
         if (!$result['found']){
             appendPoiskToFiles($fileName, $files[$fileName], $outputDir);
             $poiskpoteryah_Count++;
-            // output("[потеряха] {$fileName} — не найден в БД (записан в файлы)");
+        }
+        // Сохраняем прогресс и делаем паузу каждый батч
+        if ($i % $batchSize === 0 && $i > 0){
+            updateProgress($progressFile, $i + 1, $checkedCount, $poiskpoteryah_Count);
+            if ($delayBetweenBatches > 0){
+                output(".");
+                usleep($delayBetweenBatches * 1000000);
+            }
         }
         if ($delayBetweenQueries > 0){
             usleep($delayBetweenQueries * 1000000);
-        }
-        if ($i % $batchSize === 0 && $i > 0 && $delayBetweenBatches > 0){
-            // output("[ПАУЗА] Ожидание {$delayBetweenBatches} сек...");
-            output(".");
-            usleep($delayBetweenBatches * 1000000);
-        }
-        if ($i % 5000 === 0 && $i > 0){
-            updateProgress($progressFile, $i + 1, $checkedCount, $poiskpoteryah_Count);
-            output("[СОХРАНЕНИЕ] Прогресс сохранён (индекс {$i})");
         }
     }
     $progress = [
         'last_index' => $totalToCheck,
         'checked_count' => $checkedCount,
-        'poiskpoteryah__count' => $poiskpoteryah_Count,
+        'poiskpoteryah_count' => $poiskpoteryah_Count,
         'updated_at' => date('Y-m-d H:i:s'),
         'completed' => true,
     ];
@@ -744,7 +747,7 @@ if ($step === '1'){
     $elapsed = time() - $startTime;
     output("");
     output("=== ЗАВЕРШЕНО ===");
-    output("Всего проверено файлов: {$totalToCheck}");
+    output("Всего проверено файлов: {$checkedCount}");
     output("Найдено потерях: {$poiskpoteryah_Count}");
     output("Затрачено времени: " . round($elapsed / 60, 1) . " мин");
     output("");
