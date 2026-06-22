@@ -1,0 +1,11 @@
+{
+    "date": "2026-06-22 13:49:55",
+    "source_dir": "\/upload\/",
+    "target_dir": "\/upload_not_founded_files\/",
+    "statistics": {
+        "total_files": 121,
+        "perenos_successfully": 121,
+        "errors": 0,
+        "not_found": 0
+    }
+}
