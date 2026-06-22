@@ -26,6 +26,7 @@
  *   php /home/bitrix/www/poisk_i_perenos_failov_kotorih_net_v_baze_sql.php --step=2
  *   php /home/bitrix/www/poisk_i_perenos_failov_kotorih_net_v_baze_sql.php --step=3
  */
+set_time_limit(0);// Снимает ограничение на время выполнения
 @ignore_user_abort(true);// Позволяет скрипту работать после отключения SSH
 if($_SERVER["DOCUMENT_ROOT"]){$_SERVER["DOCUMENT_ROOT"] = $_SERVER["DOCUMENT_ROOT"];}else{$_SERVER["DOCUMENT_ROOT"] = '/home/bitrix/www';}//для запуска через крон/ssh
 // Определяем режим запуска
@@ -36,7 +37,6 @@ if ($isCLI){
     require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 } else {
     require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
-    set_time_limit(0);// Снимает ограничение на время выполнения
     // ini_set('memory_limit', '2048M');
     header('Content-Type: text/html; charset=utf-8');
     echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Поиск файлов-потерях</title></head><body><pre>';
