@@ -1,6 +1,6 @@
 <?php
 /**
- * Скрипт поиска файлов-потерях в /upload/.
+ * poisk_poteruashek_puti_pdo.php поиска файлов-потерях в /upload/.
  * Версия с хранением данных в БД для экономии памяти.
  *
  * Таблицы в БД:
@@ -8,9 +8,9 @@
  * - upload_files_skipped — игнорируемые файлы
  *
  * Запуск:
- *   php скрипт.php --step=1  // сканирование и запись в БД
- *   php скрипт.php --step=2  // поиск в БД
- *   php скрипт.php --step=3  // перемещение
+ *   php poisk_poteruashek_puti_pdo.php --step=1  // сканирование и запись в БД
+ *   php poisk_poteruashek_puti_pdo.php --step=2  // поиск в БД
+ *   php poisk_poteruashek_puti_pdo.php --step=3  // перемещение
  */
 // ===== НАСТРОЙКИ =====
 ini_set('memory_limit', '8192M');
